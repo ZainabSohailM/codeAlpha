@@ -1,0 +1,62 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+float gradeToPoint(string grade) {
+    if (grade == "A+") return 4.0;
+    else if (grade == "A") return 3.7;
+    else if (grade == "A-") return 3.5;
+    else if (grade == "B+") return 3.3;
+    else if (grade == "B") return 3.0;
+    else if (grade == "B-") return 2.7;
+    else if (grade == "C+") return 2.3;
+    else if (grade == "C") return 2.0;
+    else if (grade == "C-") return 1.7;
+    else if (grade == "D+") return 1.3;
+    else if (grade == "D") return 1.0;
+    else if (grade == "D-") return 0.7;
+    else if (grade == "F") return 0.0;
+    else return 0.0; 
+}
+
+int main() {
+    int numCourses;
+    float totalGradePoints = 0, totalCredits = 0;
+
+    cout << "Enter the number of courses: ";
+    cin >> numCourses;
+
+    vector<string> courseNames(numCourses);
+    vector<string> grades(numCourses);
+    vector<int> credits(numCourses);
+
+    for (int i = 0; i < numCourses; ++i) {
+        cout << "Enter course name: ";
+        cin >> courseNames[i];
+
+        cout << "Enter grade (A+/A/A-/B+/...) for " << courseNames[i] << ": ";
+        cin >> grades[i];
+
+        cout << "Enter credit hours for " << courseNames[i] << ": ";
+        cin >> credits[i];
+
+        float gradePoints = gradeToPoint(grades[i]);
+        totalGradePoints += gradePoints * credits[i];
+        totalCredits += credits[i];
+    }
+
+    float GPA = totalGradePoints / totalCredits;
+
+    cout << "\nResults:\n";
+    for (int i = 0; i < numCourses; ++i) {
+        cout << "Course: " << courseNames[i] << ", Grade: " << grades[i]
+            << ", Credits: " << credits[i] << ", Grade Points: " << gradeToPoint(grades[i]) << endl;
+    }
+
+    cout << "Total Credits: " << totalCredits << endl;
+    cout << "Total Grade Points: " << totalGradePoints << endl;
+    cout << "GPA: " << GPA << endl;
+
+    return 0;
+}
