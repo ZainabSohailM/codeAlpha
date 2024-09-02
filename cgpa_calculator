@@ -1,12 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
-
 float gradeToPoint(string grade) {
-    if (grade == "A+") return 4.0;
-    else if (grade == "A") return 3.7;
-    else if (grade == "A-") return 3.5;
+    if (grade == "A+" || grade == "A") return 4.0;
+    else if (grade == "A-") return 3.7;
     else if (grade == "B+") return 3.3;
     else if (grade == "B") return 3.0;
     else if (grade == "B-") return 2.7;
@@ -17,15 +16,11 @@ float gradeToPoint(string grade) {
     else if (grade == "D") return 1.0;
     else if (grade == "D-") return 0.7;
     else if (grade == "F") return 0.0;
-    else return 0.0; 
+    else return 0.0;
 }
 
-int main() {
-    int numCourses;
+float calculateGPA(int numCourses) {
     float totalGradePoints = 0, totalCredits = 0;
-
-    cout << "Enter the number of courses: ";
-    cin >> numCourses;
 
     vector<string> courseNames(numCourses);
     vector<string> grades(numCourses);
@@ -46,17 +41,39 @@ int main() {
         totalCredits += credits[i];
     }
 
-    float GPA = totalGradePoints / totalCredits;
+    return totalCredits > 0 ? totalGradePoints / totalCredits : 0;
+}
 
-    cout << "\nResults:\n";
-    for (int i = 0; i < numCourses; ++i) {
-        cout << "Course: " << courseNames[i] << ", Grade: " << grades[i]
-            << ", Credits: " << credits[i] << ", Grade Points: " << gradeToPoint(grades[i]) << endl;
+int main() {
+    int numSemesters;
+
+    cout << "Enter the number of semesters: ";
+    cin >> numSemesters;
+
+    vector<float> gpaList(numSemesters);
+
+    for (int i = 0; i < numSemesters; ++i) {
+        int numCourses;
+        cout << "Enter the number of courses for semester " << (i + 1) << ": ";
+        cin >> numCourses;
+
+        cout << "Semester " << (i + 1) << " GPA calculation:\n";
+        gpaList[i] = calculateGPA(numCourses);
+
+        cout << "GPA for semester " << (i + 1) << ": " << gpaList[i] << endl;
     }
 
-    cout << "Total Credits: " << totalCredits << endl;
-    cout << "Total Grade Points: " << totalGradePoints << endl;
-    cout << "GPA: " << GPA << endl;
+    // Calculate CGPA
+    float totalGPA = 0;
+    for (float gpa : gpaList) {
+        totalGPA += gpa;
+    }
+
+    float cgpa = numSemesters > 0 ? totalGPA / numSemesters : 0;
+
+    cout << "\nCGPA Calculation:\n";
+    cout << "Total GPA for all semesters: " << totalGPA << endl;
+    cout << "CGPA: " << cgpa << endl;
 
     return 0;
 }
