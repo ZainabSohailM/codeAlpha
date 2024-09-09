@@ -1,6 +1,5 @@
-
 # Code Alpha Internship Tasks
-# CGPA Calculator Deatils
+## CGPA Calculator Deatils
 
 This is a simple console-based GPA (Grade Point Average) and CGPA (Cumulative Grade Point Average) calculator implemented in C++. The program allows users to input their grades, credit hours, and number of courses for multiple semesters, and calculates both the GPA for each semester and the overall CGPA.
 
@@ -25,7 +24,7 @@ This is a simple console-based GPA (Grade Point Average) and CGPA (Cumulative Gr
 **• Grade Input:** The program expects grades in the format provided (e.g., A, B+, C-). Any other input will be treated as 0.0 grade points.
 
 **• Credit Hours:** Ensure that the number of credit hours entered for each course is a positive integer.
-# Login and Registration System
+## Login and Registration System
 
 This C++ project is a basic implementation of a user authentication system. It covers fundamental concepts of user registration, login functionality, and password security.
 
@@ -47,7 +46,7 @@ This C++ project is a basic implementation of a user authentication system. It c
 
 **• loginUser:** Verifies the provided password against the stored hashed password.
 
-# Banking System
+## Banking System
 
 This project implements a basic banking system using C++. It provides functionalities to manage customers, accounts, and transactions. This simple banking system allows for account creation, deposits, withdrawals, transfers, and viewing transaction histories.
 
